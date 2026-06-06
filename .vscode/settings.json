@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8",
+    "files.encoding": "ISO-8859-1",
+    "files.autoGuessEncoding": false
+}
