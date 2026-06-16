@@ -2,34 +2,45 @@ package edu.eci.arsw.samples;
 
 import java.util.concurrent.CyclicBarrier;
 
+/**
+ * Clase principal del programa.
+ * 
+ * @since 1.0
+ */
 public class Main {
 
+	/**
+	 * Crea 20 hilos con una barrera, los ejecuta y calcula el tiempo promedio.
+	 * 
+	 * @param args Argumentos de línea de comandos.
+	 * @since 1.0
+	 */
 	public static void main(String[] args) {
-		int numHilos=20;
-		
+		int numHilos = 20;
+
 		CyclicBarrier barrier = new CyclicBarrier(numHilos);
-		
-		HiloProc[] hilos=new HiloProc[numHilos];
-		
-		for (int i=0;i<numHilos;i++){
-			hilos[i]=new HiloProc(i, barrier);
+
+		HiloProc[] hilos = new HiloProc[numHilos];
+
+		for (int i = 0; i < numHilos; i++) {
+			hilos[i] = new HiloProc(i, barrier);
 		}
-		for (int i=0;i<numHilos;i++){
+		for (int i = 0; i < numHilos; i++) {
 			hilos[i].start();
 		}
 
-		long tiempoPromedio=0;
-		
-		for (int i=0;i<numHilos;i++){
+		long tiempoPromedio = 0;
+
+		for (int i = 0; i < numHilos; i++) {
 			try {
 				hilos[i].join();
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-			tiempoPromedio+=hilos[i].getResultado();
+			tiempoPromedio += hilos[i].getResultado();
 		}
 
-		System.out.println("El tiempo promedio de la ejecucion fue de:"+tiempoPromedio/numHilos);
+		System.out.println("El tiempo promedio de la ejecucion fue de:" + tiempoPromedio / numHilos);
 	}
-	
+
 }
